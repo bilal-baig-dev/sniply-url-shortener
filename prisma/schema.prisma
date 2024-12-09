@@ -1,0 +1,143 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["typedSql"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model ShortUrl {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  originalUrl String
+  title       String?
+  siteLogo    String?
+  shortCode   String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  totalClicks  Int @default(0)
+  uniqueClicks Int @default(0)
+  analytics Analytics? @relation
+  analyticsId String? @db.ObjectId
+  token String? @db.String
+  userId String? 
+  qrCode String?
+  qrCodeOptions  Json?     @default("{}")
+  isQRCodeEnabled   Boolean?   @default(false)
+}
+
+model Analytics {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  shortUrl ShortUrl @relation(fields: [shortUrlId], references: [id])
+  shortUrlId String @unique @db.ObjectId
+  countries   Json?    @default("{}")
+  devices     Json?    @default("{}")
+  sources     Json?    @default("{}")
+  ipAddresses String[] @default([])
+  cities      Json?     @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id            String              @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  password      String?
+  email         String              @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  tokens        VerificationToken[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String
+  expires    DateTime
+  userId     String?  @db.ObjectId
+  user       User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([identifier, token])
+}
+
+model Waitlist {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Payments {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  customerID     String?
+  invoice_url    String?
+  paymentID      String   @unique
+  subscriptionId String?
+  name           String?
+  email          String?
+  phone          String?
+  status         String?
+  amount         String?
+  periodStart    String?
+  periodEnd      String?
+  type           String?
+  tax            String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model AnalyticsQueue {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  shortUrlId  String
+  data        Json
+  processed   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  processedAt DateTime?
+  error       String?
+  attempts    Int       @default(0)
+
+  @@index([processed, attempts])
+}
