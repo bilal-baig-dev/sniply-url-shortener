@@ -2,6 +2,8 @@
 
 A free, powerful tool for shortening URLs, tracking analytics, and generating QR codes. Sniply URL Shortener makes it easy to manage and optimize your links for better engagement and results.
 
+🌐 [Demo Link](https://sniply.biz)
+
 ---
 
 ## ✨ Features
@@ -14,7 +16,7 @@ A free, powerful tool for shortening URLs, tracking analytics, and generating QR
 
 ---
 
-## 🎥 Demo
+## 🎥 Preview
 
 ![Sniply URL Shortener Demo](https://raw.githubusercontent.com/bilal-baig-dev/sniply-url-shortener/refs/heads/main/public/images/url-shortener-track-analytics-free.png)
 
