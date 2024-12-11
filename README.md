@@ -16,19 +16,19 @@ A free, powerful tool for shortening URLs, tracking analytics, and generating QR
 
 ## 🎥 Demo
 
-![Sniply URL Shortener Demo](https://raw.githubusercontent.com/bilal-baig-dev/sniply-url-shortener/refs/heads/main/public/url-shortener-track-analytics-free.png)
+![Sniply URL Shortener Demo](https://raw.githubusercontent.com/bilal-baig-dev/sniply-url-shortener/refs/heads/main/public/images/url-shortener-track-analytics-free.png)
 
 ---
 
-![Sniply URL Shortener Demo](https://raw.githubusercontent.com/bilal-baig-dev/sniply-url-shortener/refs/heads/main/public/sniply-shorten-long-url-track-analytics-free.webp)
+![Sniply URL Shortener Demo](https://raw.githubusercontent.com/bilal-baig-dev/sniply-url-shortener/refs/heads/main/public/images/sniply-shorten-long-url-track-analytics-free.webp)
 
 ---
 
-![Sniply URL Shortener Demo](https://raw.githubusercontent.com/bilal-baig-dev/sniply-url-shortener/refs/heads/main/public/url-shortener-free-qr-code-generator.png)
+![Sniply URL Shortener Demo](https://raw.githubusercontent.com/bilal-baig-dev/sniply-url-shortener/refs/heads/main/public/images/url-shortener-free-qr-code-generator.png)
 
 ---
 
-![Sniply URL Shortener Demo](https://raw.githubusercontent.com/bilal-baig-dev/sniply-url-shortener/refs/heads/main/public/url-shortener-free.png)
+![Sniply URL Shortener Demo](https://raw.githubusercontent.com/bilal-baig-dev/sniply-url-shortener/refs/heads/main/public/images/url-shortener-free.png)
 
 ---
 
